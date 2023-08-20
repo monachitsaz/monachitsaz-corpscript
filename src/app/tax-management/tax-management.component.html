@@ -1,0 +1,54 @@
+<div class="container">
+    <form (ngSubmit)="submitForm()" [formGroup]="formGroup">
+        <div class="row">
+
+            <div class="form-group col-6">
+                <label>division id</label>
+                <input formControlName="division_id" type="number" class="form-control" placeholder="division id">
+            </div>
+            <div class="form-group col-6">
+                <label>tax id</label>
+                <input formControlName="tax_id" type="text" class="form-control" placeholder="tax id">
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-6">
+                <label>description</label>
+                <textarea formControlName="tax_description" class="form-control" placeholder="description"></textarea>
+            </div>
+            <div class="form-group col-6">
+                <label>active</label>
+                <input formControlName="active" type="checkbox" class="form-check" aria-describedby="isActive">
+
+            </div>
+        </div>
+
+
+        <br>
+        <button type="submit" class="btn btn-primary">Save</button>
+    </form>
+</div>
+
+
+<p-table [value]="allTaxes" [tableStyle]="{ 'min-width': '50rem' }">
+    <ng-template pTemplate="header">
+        <tr>
+            <th>active</th>
+            <th>division id</th>
+            <th>tax id</th>
+            <th>description</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-tax>
+        <tr>
+            <td>{{ tax.active }}</td>
+            <td>{{ tax.division_id }}</td>
+            <td>{{ tax.tax_id }}</td>
+            <td>{{ tax.tax_description }}</td>
+            <td><button (click)="editRow(tax.id)" class="btn btn-small btn-warning">!</button></td>
+            <td><button (click)="deleteRow(tax.id)" class="btn btn-small btn-danger">×</button></td>
+        </tr>
+    </ng-template>
+</p-table>
